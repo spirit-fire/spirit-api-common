@@ -28,6 +28,7 @@ public class GkMemcacheClient {
             this.memcachedClient = null;
         }
         this.memcachedClient = new MemcachedClient(this.serverPort);
+        this.memcachedClient.setPrimitiveAsString(true);
     }
 
     public boolean add(String key, Object value){
@@ -41,4 +42,5 @@ public class GkMemcacheClient {
     public void setServerPort(String serverPort) {
         this.serverPort = serverPort;
     }
+
 }
