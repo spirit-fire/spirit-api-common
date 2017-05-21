@@ -17,6 +17,7 @@
  */
 package com.spirit.engine.storage.mc.memcached;
 
+import com.spirit.engine.common.ToolUtils;
 import org.apache.log4j.Logger;
 
 import java.io.*;
@@ -293,6 +294,12 @@ public class MemcachedClient {
 
 		// get a pool instance to work with for the life of this instance
 		this.pool               = SockIOPool.getInstance( poolName );
+		List<String> list = ToolUtils.explode(this.poolName, ",");
+		String[] servers = new String[list.size()];
+		for(int index=0; index<list.size(); index++){
+			servers[index] = list.get(index);
+		}
+		this.pool.setServers(servers);
 	}
 
 	/** 
