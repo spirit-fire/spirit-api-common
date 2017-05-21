@@ -300,6 +300,7 @@ public class MemcachedClient {
 			servers[index] = list.get(index);
 		}
 		this.pool.setServers(servers);
+		this.pool.initialize();
 	}
 
 	/** 
