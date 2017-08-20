@@ -34,6 +34,9 @@ public class GkMemcacheClientShardingSupport {
     /** read key */
     private String readKey;
 
+    /** write key */
+    private String writeKey;
+
     /** blocking queue used to transfer data */
     private LinkedBlockingQueue<String> linkedBlockingQueue;
 
@@ -144,6 +147,24 @@ public class GkMemcacheClientShardingSupport {
         }
 
         return data == null ? "" : (String) data;
+    }
+
+    /**
+     * loop writer
+     * @param key
+     * @return
+     */
+    public boolean loopWriter(String key, Object value){
+        int index = this.getRandomIndex();
+        boolean flag = false;
+        for(int i = 0; i < this.size; i++){
+            flag = this.gkClientMap.get((index + i) % this.size).add(key, value);
+            if(flag){
+                break;
+            }
+        }
+
+        return flag;
     }
 
     public boolean set(String key, Object value){
