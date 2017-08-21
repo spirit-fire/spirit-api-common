@@ -148,7 +148,7 @@ public class GkJedisCilent {
         this.jedisCluster.hset(key, field, value);
     }
 
-    public String mget(String key, String field){
+    public String hget(String key, String field){
         return this.jedisCluster.hget(key, field);
     }
 
