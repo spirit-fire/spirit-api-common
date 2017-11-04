@@ -4,6 +4,7 @@ import com.qiniu.common.Zone;
 import com.qiniu.storage.Configuration;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.util.Auth;
+import com.spirit.commons.common.ApiLogger;
 import com.spirit.commons.common.HttpRequest;
 import com.spirit.commons.common.MD5Utils;
 import com.spirit.commons.qiniu.constant.QiniuAuthTokenConstants;
@@ -20,9 +21,6 @@ import java.util.HashMap;
  * Created by lgx on 2017/5/14.
  */
 public class QiniuUploadService {
-
-    /** log4j */
-    private static final Logger log = Logger.getLogger(QiniuUploadService.class.getName());
 
     /** qiniu auth cache map */
     private static HashMap<String, Auth> qiniuAuthCacheMap = new HashMap<String, Auth>();
@@ -83,7 +81,7 @@ public class QiniuUploadService {
             // get bytes from target url
             byte[] bytes = HttpRequest.doGetBytes(info);
             if(null==bytes || 0==bytes.length){
-                log.error(String.format("[pic] picture download error! pic_url: %s, bytes length: %d", info, bytes.length));
+                ApiLogger.error(String.format("QiniuUploadService uploadPicture picture download error! pic_url: %s, bytes length: %d", info, bytes.length));
                 return response;
             }
 
@@ -94,7 +92,7 @@ public class QiniuUploadService {
             response = String.format("contentBucket_%s_%d_%d", pid, img.getWidth(), img.getHeight());
             img = null;
         }catch(Exception e){
-            log.error(String.format("[qiniu] qiniu upload picture error! pic_url: %s, err_msg: %s", info, e.getMessage()));
+            ApiLogger.error(String.format("QiniuUploadService uploadPicture upload picture error! pic_url: %s, err_msg: %s", info, e.getMessage()));
             e.printStackTrace();
         }
         return response;

@@ -23,7 +23,7 @@ public class GkMemcacheClient {
     /**
      * default init
      */
-    protected void init(){
+    public void init(){
         if(null!=this.memcachedClient){
             this.memcachedClient = null;
         }
@@ -47,4 +47,7 @@ public class GkMemcacheClient {
         this.serverPort = serverPort;
     }
 
+    public String getServerPort(){
+        return this.serverPort;
+    }
 }
