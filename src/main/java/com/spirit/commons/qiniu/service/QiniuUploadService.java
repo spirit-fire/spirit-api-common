@@ -93,7 +93,6 @@ public class QiniuUploadService {
             img = null;
         }catch(Exception e){
             ApiLogger.error(String.format("QiniuUploadService uploadPicture upload picture error! pic_url: %s, err_msg: %s", info, e.getMessage()));
-            e.printStackTrace();
         }
         return response;
     }
@@ -112,5 +111,11 @@ public class QiniuUploadService {
      */
     public static void upload(byte[] bytes){
 
+    }
+
+    public static void main(String[] args){
+        String url = "http://jbcdn2.b0.upaiyun.com/2017/10/b027676ce3d4e5a5566c55927e1a77fc.png";
+        String response = upload(url, 1);
+        System.out.println(response);
     }
 }
