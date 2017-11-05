@@ -89,7 +89,7 @@ public class QiniuUploadService {
             uploadManager.put(bytes, pid, upToken);
 
             BufferedImage img = ImageIO.read(new ByteArrayInputStream(bytes));
-            response = String.format("contentBucket_%s_%d_%d", pid, img.getWidth(), img.getHeight());
+            response = String.format("geekreader_%s_%d_%d", pid, img.getWidth(), img.getHeight());
             img = null;
         }catch(Exception e){
             ApiLogger.error(String.format("QiniuUploadService uploadPicture upload picture error! pic_url: %s, err_msg: %s", info, e.getMessage()));
