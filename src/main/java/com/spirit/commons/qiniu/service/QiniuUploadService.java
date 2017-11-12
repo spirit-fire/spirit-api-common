@@ -114,7 +114,8 @@ public class QiniuUploadService {
     }
 
     public static void main(String[] args){
-        String url = "http://jbcdn2.b0.upaiyun.com/2017/10/b027676ce3d4e5a5566c55927e1a77fc.png";
+//        String url = "http://jbcdn2.b0.upaiyun.com/2017/10/b027676ce3d4e5a5566c55927e1a77fc.png";
+        String url = "http://server.zzidc.com/uploads/allimg/140504/1-1405041615425E.png";
         String response = upload(url, 1);
         System.out.println(response);
     }

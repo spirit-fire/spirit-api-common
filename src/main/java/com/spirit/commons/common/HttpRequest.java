@@ -51,6 +51,7 @@ public class HttpRequest {
         URL url = new URL(urlInput);
         URLConnection urlConnection = url.openConnection();
         urlConnection.setReadTimeout(3000);
+        urlConnection.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
 
         byte[] bytes = new byte[1024];
         int len = 0;
